@@ -177,13 +177,13 @@ function checkPhone() {
         inputData.style.border = "1px solid red";
         lableArlet.innerHTML = "&#8861;";
         lableArlet.style.color = "red";
-        return false
+        return false;
     }
     else {
         inputData.style.border = "1px solid lightgreen";
         lableArlet.innerHTML = "&checkmark;";
         lableArlet.style.color = "lightgreen";
-        return true
+        return true;
     }
 }
 
@@ -213,6 +213,7 @@ function checkPass() {
 }
 //comfirm password
 function comfirmPassword() {
+    var checkPassword = checkPass().toString();
     let passWord = document.getElementsByClassName("passWord")[0];
     let comfirm = document.getElementsByClassName("passWord")[1];
     let lableArlet = document.getElementsByClassName("lableArlet")[5];
