@@ -8,21 +8,6 @@ const rPass = /^(\w)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}|$/;
 
 const reader = new FileReader();
 
-document.onkeyup = function (e) {
-    // console.log(e.which);
-    const shiftButton = 16;
-    const deleteButton = 46;
-
-    switch (e.which) {
-        case shiftButton:
-            addData();
-            break;
-        case deleteButton:
-            functionReset();
-            break
-    }
-}
-
 
 // function reset 
 
@@ -291,10 +276,30 @@ function addData() {
 
         }
         for (let i = 0; i < data.length; i++) {
-            data[i].innerHTML = inputData[i].value;
-            // lableArlet[i].innerHTML = "";
-
+            if (i == 2) {
+                data[i].innerHTML = inputData[i].value.slice(0, 3) + "-" + inputData[i].value.slice(3, 6) + "-" + inputData[i].value.slice(6);
+            }
+            else {
+                data[i].innerHTML = inputData[i].value;
+                // lableArlet[i].innerHTML = "";}
+            }
         }
 
+    }
+}
+
+document.onkeyup = function (e) {
+    // console.log(e.which);
+    const shiftButton = 16;
+    const deleteButton = 46;
+
+    switch (e.which) {
+        case shiftButton:
+            addData();
+            break;
+        case deleteButton:
+            functionReset();
+            break;
+        // default: break;
     }
 }
