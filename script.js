@@ -29,7 +29,6 @@ function convertImg(image) {
         imageUpload.src = reader.result;
     }, false);
 }
-
 function imageLoad() {
     const titleImg = document.getElementsByClassName("centered")[0];
     const imgLoad = document.getElementById("imgLoad").files[0];
@@ -190,7 +189,6 @@ function comfirmPassword() {
         } else {
             refuse(comfirm, comfirmAlert);
             return false;
-
         }
     } else {
         refuse(comfirm, comfirmAlert);
@@ -225,7 +223,6 @@ function addData() {
         imgAdd.src = reader.result;
         if (imgAdd.src == reader.result) {
             titleImg.style.display = "none";
-
         }
         for (let i = 0; i < data.length; i++) {
             if (i == 2) {
