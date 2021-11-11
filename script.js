@@ -1,25 +1,29 @@
-const findL = /[a-z]|á|à|ạ|ã|ả|ă|ắ|ằ|ẳ|ặ|ẵ|â|ấ|ầ|ẫ|ẩ|ậ|é|è|ẽ|ẻ|ẹ|ê|ế|ề|ể|ễ|ệ|ì|í|ĩ|ị|ỉ|ò|ó|ỏ|õ|ọ|ô|ố|ồ|ộ|ổ|ỗ|ơ|ớ|ờ|ở|ợ|ỡ|ú|ù|ủ|ụ|ũ|ư|ứ|ừ|ữ|ử|ự|ý|ỳ|ỹ|ỵ|ỷ|đ/g;
-const findU = /[A-Z]|Á|À|Ạ|Ã|Ả|Ă|Ắ|Ằ|Ẳ|Ặ|Ẵ|Â|Ấ|Ầ|Ẫ|Ẩ|Ậ|É|È|Ẽ|Ẻ|Ẹ|Ê|Ế|Ề|Ể|Ễ|Ệ|Ì|Í|Ĩ|Ị|Ỉ|Ò|Ó|Ỏ|Õ|Ọ|Ô|Ố|Ồ|Ộ|Ổ|Ỗ|Ơ|Ớ|Ờ|Ở|Ợ|Ỡ|Ú|Ù|Ủ|Ụ|Ũ|Ư|Ứ|Ừ|Ữ|Ử|Ự|Ý|Ỳ|Ỹ|Ỵ|Ỷ|Đ/g;
 const specialCharacter = /\~|\`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\_|\-|\+|\=|\{|\[|\}|\]|\||\\|\:|\;|\"|\'|\<|\,|\>|\.|\?|\//;
-const rEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-const findNumber = /[0-9]/g;
-const rDate = /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/;
-const rPass = /^(\w)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}|$/;
-
 const reader = new FileReader();
 
-
 // function reset 
-
 function functionReset() {
     document.getElementById("formR").reset();
     location.reload();
 }
 
+// alert refuse
+function refuse(inputName, labelName) {
+    labelName.innerHTML = "&#8861;";
+    labelName.style.color = "red";
+    inputName.style.border = "1px solid red";
+}
+
+// alert agree
+function agree(inputName, labelName) {
+    labelName.innerHTML = "&checkmark;";
+    labelName.style.color = "lightgreen";
+    inputName.style.border = "1px solid lightgreen";
+}
 
 //function load image
-function convertImg(x) {
-    const imageUpload = document.getElementById(x);
+function convertImg(image) {
+    const imageUpload = document.getElementById(image);
     reader.addEventListener("load", function () {
         // convert image file to base64 string
         imageUpload.src = reader.result;
@@ -27,108 +31,81 @@ function convertImg(x) {
 }
 
 function imageLoad() {
-    const titleImg = document.getElementsByClassName('centered')[0];
+    const titleImg = document.getElementsByClassName("centered")[0];
     const imgLoad = document.getElementById("imgLoad").files[0];
-    const x = convertImg("imageUpload");
+    const image = convertImg("imageUpload");
     reader.readAsDataURL(imgLoad);
     titleImg.style.display = "none";
 }
 
-
 //check email
 function checkEmail() {
-    let inputData = document.getElementsByClassName("inputData")[1];
-    let lableArlet = document.getElementsByClassName("lableArlet")[1];
-    var x = rEmail.test(inputData.value);
-    // console.log(x);
+    const regexEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    let inputEmail = document.getElementById("inputEmail");
+    let emailAlert = document.getElementById("emailAlert");
+    let checkRegex = regexEmail.test(inputEmail.value);
 
-    if (x) {
-        // lableArlet.innerHTML = x;
-        lableArlet.innerHTML = "&checkmark;";
-        lableArlet.style.color = "lightgreen";
-        inputData.style.border = "1px solid lightgreen";
+    if (checkRegex) {
+        agree(inputEmail, emailAlert);
+
         return true;
-    }
-    else {
-        lableArlet.innerHTML = "&#8861;";
-        lableArlet.style.color = "red";
-        inputData.style.border = "1px solid red";
+    } else {
+        refuse(inputEmail, emailAlert);
+
         return false;
     }
-
 }
 
 //function check date
 function checkDate() {
-    let inputData = document.getElementsByClassName("inputData")[3];
-    let lableArlet = document.getElementsByClassName("lableArlet")[3];
-    var x = rDate.test(inputData.value);
-    // console.log(x);
-    if (x) {
-        // lableArlet.innerHTML = x;
-        lableArlet.innerHTML = "&checkmark;";
-        lableArlet.style.color = "lightgreen";
-        inputData.style.border = "1px solid lightgreen";
+    const regexDate = /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/;
+    let inputDate = document.getElementById("inputDate");
+    let dateAlert = document.getElementById("dateAlert");
+    let checkDate = regexDate.test(inputDate.value);
+
+    if (checkDate) {
+        agree(inputDate, dateAlert);
+
         return true;
-    }
-    else {
-        lableArlet.innerHTML = "&#8861;";
-        lableArlet.style.color = "red";
-        inputData.style.border = "1px solid red";
-        // btnAdd.disabled = true;
+    } else {
+        refuse(inputDate, dateAlert);
+
         return false;
     }
 
 }
 //function check input name
 function checkInputName() {
-    let inputData = document.getElementsByClassName("inputData")[0];
-    var text = inputData.value.trim();
-    let lableArlet = document.getElementsByClassName("lableArlet")[0];
+    const lowercaseRegex = /[a-z]|á|à|ạ|ã|ả|ă|ắ|ằ|ẳ|ặ|ẵ|â|ấ|ầ|ẫ|ẩ|ậ|é|è|ẽ|ẻ|ẹ|ê|ế|ề|ể|ễ|ệ|ì|í|ĩ|ị|ỉ|ò|ó|ỏ|õ|ọ|ô|ố|ồ|ộ|ổ|ỗ|ơ|ớ|ờ|ở|ợ|ỡ|ú|ù|ủ|ụ|ũ|ư|ứ|ừ|ữ|ử|ự|ý|ỳ|ỹ|ỵ|ỷ|đ/g;
+    const uppercaseRegex = /[A-Z]|Á|À|Ạ|Ã|Ả|Ă|Ắ|Ằ|Ẳ|Ặ|Ẵ|Â|Ấ|Ầ|Ẫ|Ẩ|Ậ|É|È|Ẽ|Ẻ|Ẹ|Ê|Ế|Ề|Ể|Ễ|Ệ|Ì|Í|Ĩ|Ị|Ỉ|Ò|Ó|Ỏ|Õ|Ọ|Ô|Ố|Ồ|Ộ|Ổ|Ỗ|Ơ|Ớ|Ờ|Ở|Ợ|Ỡ|Ú|Ù|Ủ|Ụ|Ũ|Ư|Ứ|Ừ|Ữ|Ử|Ự|Ý|Ỳ|Ỹ|Ỵ|Ỷ|Đ/g;
+    const findNumber = /[0-9]/g;
+    let inputName = document.getElementById("inputName");
+    let alertName = document.getElementById("alertName");
+    var text = inputName.value.trim();
+    var checkValue;
 
-    var number;
-    // console.log(text.length);
-    if (text.length > 50) {
-        // console.log(text.length);
-        lableArlet.innerHTML = "phải < 50";
-        lableArlet.style.color = "red";
-        inputData.style.border = "1px solid red";
-        return false;
+    if (inputName.value == "") {
+        inputName.style.border = "1px solid red";
+        alertName.innerHTML = "&#8861;";
+        alertName.style.color = "red";
 
-    }
-    if (inputData.value == "") {
-        inputData.style.border = "1px solid red";
-        lableArlet.innerHTML = "&#8861;";
-        lableArlet.style.color = "red";
         return false;
-    }
-    else {
+    } else {
         for (let i = 0; i < text.length; i++) {
             if (text[i] != /\s/g && text[i] == text[i].match(findNumber) || text[i] == text[i].match(specialCharacter)) {
-                // console.log(text[i]);
-                number = 1;
+                checkValue = "false";
                 break;
-            }
-
-            else { number = 0; }
+            } else { checkValue = "true"; }
         }
-        if (number == 1) {
-            lableArlet.innerHTML = "Phải là chữ";
-            lableArlet.style.color = "red";
-            inputData.style.border = "1px solid red";
+        if (checkValue == "false") {
+            refuse(inputName, alertName);
+
             return false;
-
-        }
-        else {
-            inputData.style.border = "1px solid lightgreen";
-            lableArlet.innerHTML = "&checkmark;";
-            lableArlet.style.color = "lightgreen";
+        } else {
+            agree(inputName, alertName);
 
             text = text.toLowerCase();
             text = text.slice(0, 1).toUpperCase() + text.slice(1, text.length);
-            // console.log(text);
-
-
             for (let i = 0; i < text.length; i++) {
                 if (text[i] == " " && text[i + 1] != " ") {
                     text = text.replace(
@@ -136,17 +113,13 @@ function checkInputName() {
                         text[i] + text[i + 1].toUpperCase()
                     );
                 }
-                if (text[i] == " " && text[i + 1] != findL) {
-                    // console.log(i);
+                if (text[i] == " " && text[i + 1] != lowercaseRegex) {
                     text = text.replace(text[i], "");
                     i--;
                 }
             }
-
-            // console.log(text);
-
-            const x = text.match(findU);
-            const array = text.split(findU);
+            const x = text.match(uppercaseRegex);
+            const array = text.split(uppercaseRegex);
             let array2 = "";
             for (var i = 0; i < text.length; i++) {
                 if (text[i] == text[i].toUpperCase()) {
@@ -154,123 +127,101 @@ function checkInputName() {
                 }
             }
             array3 = array2.split("");
-            // console.log(array3);
             var newarray = "";
-            for (var i = 0; i < array2.length; i++) {
+            for (let i = 0; i < array2.length; i++) {
                 newarray = newarray + array[i] + " " + array3[i];
             }
             newarray += array[array.length - 1];
-            // console.log(newarray);
+            inputName.value = newarray.trim();
 
-            inputData.value = newarray.trim();
             return true;
         }
-
     }
-
 }
+
 // check phone number 
 function checkPhone() {
-    let inputData = document.getElementsByClassName("inputData")[2];
-    let lableArlet = document.getElementsByClassName("lableArlet")[2];
-    if (inputData.value[0] != 0 || inputData.value.length != 10) {
-        inputData.style.border = "1px solid red";
-        lableArlet.innerHTML = "&#8861;";
-        lableArlet.style.color = "red";
+    let inputPhone = document.getElementById("inputPhone");
+    let alertPhone = document.getElementById("alertPhone");
+
+    if (inputPhone.value[0] != 0 || inputPhone.value.length != 10) {
+        refuse(inputPhone, alertPhone);
+
         return false;
-    }
-    else {
-        inputData.style.border = "1px solid lightgreen";
-        lableArlet.innerHTML = "&checkmark;";
-        lableArlet.style.color = "lightgreen";
+    } else {
+        agree(inputPhone, alertPhone);
+
         return true;
     }
 }
 
 //check pass 
 function checkPass() {
-    let passWord = document.getElementsByClassName("passWord")[0];
-    let lableArlet = document.getElementsByClassName("lableArlet")[4];
-    var x = rPass.test(passWord.value);
-    var y = passWord.value.search(specialCharacter);
-    // console.log(passWord.value);
-    // console.log(x);
-    // console.log(y);
-    if (x && y != -1) {
-        // lableArlet.innerHTML = x;
-        lableArlet.innerHTML = "&checkmark;";
-        lableArlet.style.color = "lightgreen";
-        passWord.style.border = "1px solid lightgreen";
+    const regexPass = /^(\w)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}|$/;
+    let passWord = document.getElementById("passWord");
+    let alertPassword = document.getElementById("alertPassword");
+    let testPass = regexPass.test(passWord.value);
+    let checkCharacter = passWord.value.search(specialCharacter);
+
+    if (testPass && checkCharacter != -1) {
+        agree(passWord, alertPassword);
+
         return true;
-    }
-    else {
-        lableArlet.innerHTML = "&#8861;";
-        lableArlet.style.color = "red";
-        passWord.style.border = "1px solid red";
+    } else {
+        refuse(passWord, alertPassword);
+
         return false;
     }
-
 }
+
 //comfirm password
 function comfirmPassword() {
-    var checkPassword = checkPass().toString();
-    let passWord = document.getElementsByClassName("passWord")[0];
-    let comfirm = document.getElementsByClassName("passWord")[1];
-    let lableArlet = document.getElementsByClassName("lableArlet")[5];
-    var x = passWord.value;
-    var y = comfirm.value;
-    // console.log(x);
-    // console.log(y);
-    if (comfirm.value != "") {
-        if (y == x) {
-            lableArlet.innerHTML = "&checkmark;";
-            lableArlet.style.color = "lightgreen";
-            comfirm.style.border = "1px solid lightgreen";
-            return true;
-        }
-    }
+    let passWord = document.getElementById("passWord");
+    let comfirm = document.getElementById("comfirmPass");
+    let comfirmAlert = document.getElementById("comfirmAlert");
+    var valuePass = passWord.value;
+    var valueComfirm = comfirm.value;
 
-    else {
-        lableArlet.innerHTML = "&#8861;";
-        lableArlet.style.color = "red";
-        comfirm.style.border = "1px solid red";
+    if (comfirm.value != "") {
+        if (valuePass == valueComfirm) {
+            agree(comfirm, comfirmAlert);
+
+            return true;
+        } else {
+            refuse(comfirm, comfirmAlert);
+            return false;
+
+        }
+    } else {
+        refuse(comfirm, comfirmAlert);
+
         return false;
     }
 }
 
 //function Button Add
-
 function addData() {
     const titleImg = document.getElementsByClassName('centered')[1];
     let inputData = document.getElementsByClassName("inputData");
     let data = document.getElementsByClassName("data");
     let imgAdd = document.getElementById("imageAdd");
     let lableArlet = document.getElementsByClassName("lableArlet");
-    var checkName = checkInputName().toString();
-    var checkMail = checkEmail().toString();
-    var checkDatetime = checkDate().toString();
-    var checkPassword = checkPass().toString();
-    var checkComfirm = comfirmPassword().toString();
+    const checkName = checkInputName().toString();
+    const checkMail = checkEmail().toString();
+    const checkDatetime = checkDate().toString();
+    const checkPassword = checkPass().toString();
+    const checkComfirm = comfirmPassword().toString();
 
-
-
-    // console.log(inputData[0].value);
     if (checkName == "false" || checkMail == "false" || checkDatetime == "false" || checkPassword == "false" || checkComfirm == "false") {
         for (let i = 0; i < lableArlet.length; i++) {
             if (inputData[i].value == "") {
                 lableArlet[i].style.color = "red";
                 lableArlet[i].innerHTML = "Chưa nhập.";
                 inputData[i].style.border = "1px solid red";
-
-            }
-            else {
-
             }
         }
-    }
-    else {
+    } else {
         btnAdd.disabled = false;
-        const x = convertImg("imageUpload");
         imgAdd.src = reader.result;
         if (imgAdd.src == reader.result) {
             titleImg.style.display = "none";
@@ -279,18 +230,15 @@ function addData() {
         for (let i = 0; i < data.length; i++) {
             if (i == 2) {
                 data[i].innerHTML = inputData[i].value.slice(0, 3) + "-" + inputData[i].value.slice(3, 6) + "-" + inputData[i].value.slice(6);
-            }
-            else {
+            } else {
                 data[i].innerHTML = inputData[i].value;
-                // lableArlet[i].innerHTML = "";}
             }
         }
-
     }
 }
 
+//press keyboard shift, delete
 document.onkeyup = function (e) {
-    // console.log(e.which);
     const shiftButton = 16;
     const deleteButton = 46;
 
@@ -301,6 +249,5 @@ document.onkeyup = function (e) {
         case deleteButton:
             functionReset();
             break;
-        // default: break;
     }
 }

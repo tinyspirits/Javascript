@@ -15,39 +15,38 @@
     <form id="formR">
       <div class="inputForm">
         <span>Full name</span>
-        <input class="inputData" onchange="checkInputName()" type="text" />
-        <span class="lableArlet"></span>
+        <input class="inputData" id="inputName" onchange="checkInputName()" onkeypress="return this.value.length < 50"
+          type="text" />
+        <span class="lableArlet" id="alertName"></span>
       </div>
       <div class="inputForm">
         <span>Email</span>
-        <input class="inputData" type="email" placeholder="name@email.com" onkeypress="checkEmail()" />
-        <span class="lableArlet"></span>
+        <input class="inputData" id="inputEmail" type="email" placeholder="name@email.com" onkeypress="checkEmail()" />
+        <span class="lableArlet" id="emailAlert"></span>
       </div>
       <div class="inputForm">
         <span>Phone</span>
-        <input class="inputData" type="tel" placeholder="0384413339" onchange="checkPhone()"
+        <input class="inputData" id="inputPhone" type="tel" placeholder="0384413339" onchange="checkPhone()"
           onkeypress='return event.charCode >= 48 && event.charCode <= 57 && this.value.length<10'></input>
-        <span class="lableArlet"></span>
+        <span class="lableArlet" id="alertPhone"></span>
       </div>
       <div class="inputForm">
         <span>Birthday</span>
-        <input class="inputData" type="text" placeholder="dd/mm/yyyy" onchange="checkDate()"
-          onkeypress='return event.charCode >= 47 && event.charCode <= 57 && this.value.length<=9'></input>
-        <span class="lableArlet"></span>
+        <input class="inputData" id="inputDate" type="text" placeholder="dd/mm/yyyy" onchange="checkDate()"
+          onkeypress="return event.charCode >= 47 && event.charCode <= 57 && this.value.length<=9"></input>
+        <span class="lableArlet" id="dateAlert"></span>
       </div>
       <div class="inputForm">
         <span>Password</span>
-        <input type="password" class="passWord"
+        <input type="password" class="passWord" id="passWord"
           placeholder="Password 8-30 kí tự, bắt đầu bằng chữ cái, có chứa kí tự đặc biệt, số, chữ viết hoa"
-          onchange="checkPass()" onkeypress='return this.value.length < 30' />
-        <span class="lableArlet"></span>
+          onchange="checkPass()" onkeypress="return this.value.length < 30" />
+        <span class="lableArlet" id="alertPassword"></span>
       </div>
       <div class="inputForm">
         <span>Comfirm password</span>
-
-        <input type="password" class="passWord" onchange="comfirmPassword()" />
-
-        <span class="lableArlet"></span>
+        <input type="password" class="passWord" id="comfirmPass" onchange="comfirmPassword()" />
+        <span class="lableArlet" id="comfirmAlert"></span>
       </div>
       <div class="inputForm" id="image">
         <img id="imageUpload" src="" alt="" />
