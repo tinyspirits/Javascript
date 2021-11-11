@@ -19,7 +19,7 @@ function selectValue() {
         }
     } else if (selectValue == "even") {
         for (let i = 1; i <= city.length; i++) {
-            if ((i) % 2 == 0) {
+            if (i % 2 == 0) {
                 city[i - 1].style.backgroundColor = "yellow";
             }
         }
