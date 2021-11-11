@@ -203,7 +203,7 @@ function addData() {
     let inputData = document.getElementsByClassName("inputData");
     let data = document.getElementsByClassName("data");
     let imgAdd = document.getElementById("imageAdd");
-    let lableArlet = document.getElementsByClassName("lableArlet");
+    let labelAlert = document.getElementsByClassName("labelAlert");
     const checkName = checkInputName().toString();
     const checkMail = checkEmail().toString();
     const checkDatetime = checkDate().toString();
@@ -211,10 +211,10 @@ function addData() {
     const checkComfirm = comfirmPassword().toString();
 
     if (checkName == "false" || checkMail == "false" || checkDatetime == "false" || checkPassword == "false" || checkComfirm == "false") {
-        for (let i = 0; i < lableArlet.length; i++) {
+        for (let i = 0; i < labelAlert.length; i++) {
             if (inputData[i].value == "") {
-                lableArlet[i].style.color = "red";
-                lableArlet[i].innerHTML = "Chưa nhập.";
+                labelAlert[i].style.color = "red";
+                labelAlert[i].innerHTML = "Chưa nhập.";
                 inputData[i].style.border = "1px solid red";
             }
         }
