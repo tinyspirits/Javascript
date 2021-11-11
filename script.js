@@ -4,7 +4,6 @@ function selectValue() {
     const odd = document.getElementById("odd");
     const even = document.getElementById("even");
 
-    console.log(selectValue);
     for (let i = 1; i <= city.length; i++) {
         if (selectValue != i) {
             city[i - 1].style.backgroundColor = "white";
