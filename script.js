@@ -46,11 +46,9 @@ function checkEmail() {
 
     if (checkRegex) {
         agree(inputEmail, emailAlert);
-
         return true;
     } else {
         refuse(inputEmail, emailAlert);
-
         return false;
     }
 }
@@ -64,11 +62,9 @@ function checkDate() {
 
     if (checkDate) {
         agree(inputDate, dateAlert);
-
         return true;
     } else {
         refuse(inputDate, dateAlert);
-
         return false;
     }
 
@@ -87,7 +83,6 @@ function checkInputName() {
         inputName.style.border = "1px solid red";
         alertName.innerHTML = "&#8861;";
         alertName.style.color = "red";
-
         return false;
     } else {
         for (let i = 0; i < text.length; i++) {
@@ -98,7 +93,6 @@ function checkInputName() {
         }
         if (checkValue == "false") {
             refuse(inputName, alertName);
-
             return false;
         } else {
             agree(inputName, alertName);
@@ -132,7 +126,6 @@ function checkInputName() {
             }
             newarray += array[array.length - 1];
             inputName.value = newarray.trim();
-
             return true;
         }
     }
@@ -145,11 +138,9 @@ function checkPhone() {
 
     if (inputPhone.value[0] != 0 || inputPhone.value.length != 10) {
         refuse(inputPhone, alertPhone);
-
         return false;
     } else {
         agree(inputPhone, alertPhone);
-
         return true;
     }
 }
@@ -164,11 +155,9 @@ function checkPass() {
 
     if (testPass && checkCharacter != -1) {
         agree(passWord, alertPassword);
-
         return true;
     } else {
         refuse(passWord, alertPassword);
-
         return false;
     }
 }
@@ -184,7 +173,6 @@ function comfirmPassword() {
     if (comfirm.value != "") {
         if (valuePass == valueComfirm) {
             agree(comfirm, comfirmAlert);
-
             return true;
         } else {
             refuse(comfirm, comfirmAlert);
@@ -192,7 +180,6 @@ function comfirmPassword() {
         }
     } else {
         refuse(comfirm, comfirmAlert);
-
         return false;
     }
 }
