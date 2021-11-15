@@ -25,7 +25,7 @@ function addRow() {
         } else {
             let createRowTd = document.createElement("TD");
             createRow.appendChild(createRowTd);
-            createRowTd.addEventListener("dblclick", Edit);
+            createRowTd.addEventListener("dblclick", edit);
             createRowTd.addEventListener('focusout', (event) => {
                 createRowTd.contentEditable = false;
             });
@@ -44,7 +44,7 @@ function addRow() {
                 createButton.value = "Delete";
                 createRowTd.appendChild(createButton);
             }
-            function Edit() {
+            function edit() {
                 if (i == titleRow.length) {
                     createRowTd.contentEditable = false;
                 } else {
