@@ -1,0 +1,24 @@
+table,
+th,
+td {
+  border: 1px solid black;
+}
+table {
+  max-width: 500px;
+  width: 100%;
+  margin: auto;
+}
+td {
+  text-align: center;
+  overflow: hidden;
+}
+#dataTable {
+  max-width: 500px;
+  width: 100%;
+  margin: auto;
+}
+.buttonProcess {
+  padding: 2% 5%;
+  padding-left: 5%;
+  margin: 1% 0;
+}
