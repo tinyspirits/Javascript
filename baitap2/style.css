@@ -1,0 +1,18 @@
+#formDropdown {
+  display: flex;
+  margin: auto;
+  width: 40%;
+}
+#formDropdown > div {
+  width: 30%;
+  margin: auto;
+  margin-top: 0%;
+}
+#formDropdown > div:last-child {
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+}
+#formDropdown > div:last-child > span {
+  margin: 5%;
+}
