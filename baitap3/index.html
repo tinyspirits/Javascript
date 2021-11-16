@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài tập 3</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="boxChat">
+        <div class="formBoxChat" id="boxChatLeft">
+            <div class="boxChat" id="showChat">
+            </div>
+            <div id="itemsBoxChat">
+                <button onclick="buttonBoldLeft()" id="propertyBold">Đậm</button>
+                <button onclick="buttonItalicLeft()" id="propertyItalic">Nghiêng</button>
+                <button onclick="resetLeft()">Reset</button>
+            </div>
+            <div id="inputChat">
+                <div contentEditable class="inputChat" id="inputChatLeft" onkeydown="enterLeft(event)">
+                </div>
+                <button onclick="sendChatLeft()">Send</button>
+            </div>
+        </div>
+        <div class="formBoxChat" id="boxChatRight">
+            <div class="boxChat" id="showChatRight">
+            </div>
+            <div id="itemsBoxChat">
+                <button onclick="buttonBoldRight()" id="propertyBoldRight">Đậm</button>
+                <button onclick="buttonItalicRight()" id="propertyItalicRight">Nghiêng</button>
+                <button onclick="resetRight()">Reset</button>
+            </div>
+            <div id="inputChat">
+                <div contentEditable class="inputChat" id="inputChatRight" onkeydown="enterRight(event)">
+                </div>
+                <button onclick="sendchatRight()">Send</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
