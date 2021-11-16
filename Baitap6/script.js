@@ -12,7 +12,7 @@ function selectAll() { //chọn tất cả row
 }
 
 //check validate
-const nameRegex = /([A-Za-z0-9_]|[<br>])$/gi;
+const nameRegex = /([A-Za-z_]|[<br>])$/gi;
 const phoneRegex = /(0[3|5|7|8|9])+([0-9]{8})\b/;
 const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,})|[<br>])$/;
 
@@ -25,6 +25,7 @@ function checkValidate(regex, text) {
 
 //function Add
 function addRow() {
+    const check = document.getElementById("selectAllRow");
     const titleRow = document.getElementsByClassName("titleRow");
     const createRow = document.createElement("TR");
     const createRowTd = document.createElement("TD");
@@ -36,6 +37,9 @@ function addRow() {
             createRowTd.appendChild(inputTag);
             inputTag.setAttribute("class", "checkboxInput");
             inputTag.type = "checkbox";
+            if (check.checked == true) {
+                inputTag.checked = true;
+            }
         } else {
             let createRowTd = document.createElement("TD");
             createRowTd.innerHTML = "";
@@ -86,6 +90,7 @@ function addRow() {
                     createRowTd.contentEditable = false;
                 } else {
                     createRowTd.contentEditable = true;
+                    createRowTd.focus();
                 }
             }
         }
@@ -95,12 +100,16 @@ function addRow() {
 
 //function Delete
 function deleteRow() {
+    const check = document.getElementById("selectAllRow");
     const checkboxInput = document.getElementsByClassName("checkboxInput");
 
     for (let i = 0; i < checkboxInput.length; ++i) {
         if (checkboxInput[i].checked == true) {
             document.getElementById("tableData").deleteRow(i + 1);
+            check.checked = false;
             i--;
+        } else {
+            check.checked = false;
         }
     }
 }
