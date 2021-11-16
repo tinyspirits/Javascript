@@ -1,13 +1,3 @@
-function buttonBold() {
-    document.execCommand('Bold');
-    let element = document.getElementById("propertyBold");
-    element.classList.toggle("active");
-}
-function buttonBoldRight() {
-    document.execCommand('Bold');
-    let element = document.getElementById("propertyBoldRight");
-    element.classList.toggle("active");
-}
 function buttonItalic() {
     document.execCommand('Italic');
     let element = document.getElementById("propertyItalic");
@@ -16,6 +6,16 @@ function buttonItalic() {
 function buttonItalicRight() {
     document.execCommand('Italic');
     let element = document.getElementById("propertyItalicRight");
+    element.classList.toggle("active");
+}
+function buttonBold() {
+    document.execCommand('Bold');
+    let element = document.getElementById("propertyBold");
+    element.classList.toggle("active");
+}
+function buttonBoldRight() {
+    document.execCommand('Bold');
+    let element = document.getElementById("propertyBoldRight");
     element.classList.toggle("active");
 }
 function resetLeft() {
