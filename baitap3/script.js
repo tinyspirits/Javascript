@@ -1,38 +1,39 @@
+function property(id, propertyText) {
+    document.execCommand(propertyText);
+    let element = document.getElementById(id);
+    element.classList.toggle("active");
+}
+
 function buttonItalicLeft() {
-    document.execCommand('Italic');
-    let element = document.getElementById("propertyItalic");
-    element.classList.toggle("active");
+    property("propertyItalic", "Italic");
 }
+
 function buttonItalicRight() {
-    document.execCommand('Italic');
-    let element = document.getElementById("propertyItalicRight");
-    element.classList.toggle("active");
+    property("propertyItalicRight", "Italic");
+
 }
+
 function buttonBoldLeft() {
-    document.execCommand('Bold');
-    let element = document.getElementById("propertyBold");
-    element.classList.toggle("active");
+    property("propertyBold", "Bold");
 }
+
 function buttonBoldRight() {
-    document.execCommand('Bold');
-    let element = document.getElementById("propertyBoldRight");
-    element.classList.toggle("active");
+    property("propertyBoldRight", "Bold");
 }
+
+function resetProperty(propertyItalic, propertyBold) {
+    document.getElementById(propertyItalic).classList.remove("active");
+    document.getElementById(propertyBold).classList.remove("active");
+}
+
 function resetLeft() {
     document.getElementById("inputChatLeft").innerHTML = "";
-    let propertyItalicRight = document.getElementById("propertyItalic");
-    let propertyBoldRight = document.getElementById("propertyBold");
-    propertyItalicRight.classList.remove("active");
-    propertyBoldRight.classList.remove("active");
-
+    resetProperty("propertyItalic", "propertyBold");
 }
 
 function resetRight() {
     document.getElementById("inputChatRight").innerHTML = "";
-    let propertyItalicRight = document.getElementById("propertyItalicRight");
-    let propertyBoldRight = document.getElementById("propertyBoldRight");
-    propertyItalicRight.classList.remove("active");
-    propertyBoldRight.classList.remove("active");
+    resetProperty("propertyItalicRight", "propertyBoldRight");
 }
 
 function enterLeft(event) {
