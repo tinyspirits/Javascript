@@ -41,7 +41,7 @@ function addRow() {
             createRowTd.innerHTML = "";
             createRow.appendChild(createRowTd);
             console.log(titleRow[i - 1].innerHTML);
-            createRowTd.addEventListener("dblclick", Edit);
+            createRowTd.addEventListener("dblclick", edit);
             createRowTd.addEventListener('focusout', (event) => {
                 if (titleRow[i - 1].innerHTML == "Name") {
                     if (checkValidate(nameRegex, createRowTd.innerHTML) == false) {
@@ -81,7 +81,7 @@ function addRow() {
                 createButton.value = "Delete";
                 createRowTd.appendChild(createButton);
             }
-            function Edit() {
+            function edit() {
                 if (i == titleRow.length) {
                     createRowTd.contentEditable = false;
                 } else {
