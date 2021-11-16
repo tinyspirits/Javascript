@@ -1,4 +1,4 @@
-function selectAll() {
+function selectAll() { //chọn tất cả row
     const check = document.getElementById("selectAllRow");
     const checkValue = document.getElementsByClassName("checkboxInput");
 
