@@ -10,7 +10,6 @@ function buttonItalicLeft() {
 
 function buttonItalicRight() {
     property("propertyItalicRight", "Italic");
-
 }
 
 function buttonBoldLeft() {
@@ -42,6 +41,7 @@ function enterLeft(event) {
         return sendChatLeft();
     }
 }
+
 function enterRight(event) {
     const x = event.key;
     if (x == "Enter") {
