@@ -1,23 +1,24 @@
-function property(id, propertyText) {
+function property(id, propertyText, inputChat) {
+    document.getElementById(inputChat).focus();
     document.execCommand(propertyText);
     let element = document.getElementById(id);
     element.classList.toggle("active");
 }
 
 function buttonItalicLeft() {
-    property("propertyItalic", "Italic");
+    property("propertyItalic", "Italic", "inputChatLeft");
 }
 
 function buttonItalicRight() {
-    property("propertyItalicRight", "Italic");
+    property("propertyItalicRight", "Italic", "inputChatRight");
 }
 
 function buttonBoldLeft() {
-    property("propertyBold", "Bold");
+    property("propertyBold", "Bold", "inputChatLeft");
 }
 
 function buttonBoldRight() {
-    property("propertyBoldRight", "Bold");
+    property("propertyBoldRight", "Bold", "inputChatRight");
 }
 
 function resetProperty(propertyItalic, propertyBold) {

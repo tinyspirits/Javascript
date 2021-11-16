@@ -4,6 +4,7 @@
   margin: auto;
   height: 100%;
 }
+
 #boxChat > .formBoxChat {
   border: 1px solid black;
   width: 50%;
@@ -100,4 +101,25 @@
   border: 1px solid black;
   word-break: break-word;
   overflow-y: auto;
+}
+
+@media screen and (max-width: 767px) {
+  #boxChat {
+    display: flex;
+    width: 100%;
+    margin: auto;
+    height: 100%;
+    flex-wrap: wrap;
+  }
+  #boxChat > .formBoxChat {
+    border: 1px solid black;
+    margin-left: 0;
+    margin: auto;
+    margin-top: 10px;
+    display: flex;
+    width: 100%;
+  }
+  #inputChat > button {
+    height: auto;
+  }
 }
