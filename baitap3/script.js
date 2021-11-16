@@ -1,4 +1,4 @@
-function buttonItalic() {
+function buttonItalicLeft() {
     document.execCommand('Italic');
     let element = document.getElementById("propertyItalic");
     element.classList.toggle("active");
@@ -8,7 +8,7 @@ function buttonItalicRight() {
     let element = document.getElementById("propertyItalicRight");
     element.classList.toggle("active");
 }
-function buttonBold() {
+function buttonBoldLeft() {
     document.execCommand('Bold');
     let element = document.getElementById("propertyBold");
     element.classList.toggle("active");
