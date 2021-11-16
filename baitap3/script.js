@@ -1,26 +1,47 @@
 function buttonBold() {
-    return document.execCommand('Bold');
+    document.execCommand('Bold');
+    let element = document.getElementById("propertyBold");
+    element.classList.toggle("active");
 }
-
+function buttonBoldRight() {
+    document.execCommand('Bold');
+    let element = document.getElementById("propertyBoldRight");
+    element.classList.toggle("active");
+}
 function buttonItalic() {
-    return document.execCommand('Italic');
+    document.execCommand('Italic');
+    let element = document.getElementById("propertyItalic");
+    element.classList.toggle("active");
 }
-
+function buttonItalicRight() {
+    document.execCommand('Italic');
+    let element = document.getElementById("propertyItalicRight");
+    element.classList.toggle("active");
+}
 function resetLeft() {
     document.getElementById("inputChatLeft").innerHTML = "";
+    let propertyItalicRight = document.getElementById("propertyItalic");
+    let propertyBoldRight = document.getElementById("propertyBold");
+    propertyItalicRight.classList.remove("active");
+    propertyBoldRight.classList.remove("active");
+
 }
 
 function resetRight() {
     document.getElementById("inputChatRight").innerHTML = "";
+    let propertyItalicRight = document.getElementById("propertyItalicRight");
+    let propertyBoldRight = document.getElementById("propertyBoldRight");
+    propertyItalicRight.classList.remove("active");
+    propertyBoldRight.classList.remove("active");
 }
 
-function functionEnterLeft(event) {
+function enterLeft(event) {
     const x = event.key;
     if (x == "Enter") {
         return sendChatLeft();
     }
 }
-function functionEnterRight(event) {
+function enterRight(event) {
     const x = event.key;
     if (x == "Enter") {
         return sendchatRight();
@@ -31,9 +52,10 @@ function functionEnterRight(event) {
 function show(text, formChat, position, imgSrc) {
     const inputChat = document.getElementById(text).innerHTML;
     const para = document.createElement("DIV");
-    const checkMessage = /(.|\s)*\S(.|\s)*/;
+    const checkMessage = /(.|\s)*\S(.|\s)*(.|\n)/;
 
     if (checkMessage.test(inputChat) == false) {
+        document.getElementById(text).innerHTML = "";
         alert("Bạn phải nhập dữ liệu!");
     } else {
         const addTagP = document.createElement("P");

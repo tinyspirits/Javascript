@@ -15,13 +15,12 @@
             <div class="boxChat" id="showChat">
             </div>
             <div id="itemsBoxChat">
-                <button onclick="buttonBold()">Đậm</button>
-                <button onclick="buttonItalic()">Nghiêng</button>
+                <button onclick="buttonBold()" id="propertyBold">Đậm</button>
+                <button onclick="buttonItalic()" id="propertyItalic">Nghiêng</button>
                 <button onclick="resetLeft()">Reset</button>
             </div>
             <div id="inputChat">
-                <div contentEditable class="inputChat" id="inputChatLeft" type="text"
-                    onkeydown="functionEnterLeft(event)">
+                <div contentEditable class="inputChat" id="inputChatLeft" onkeydown="enterLeft(event)">
                 </div>
                 <button onclick="sendChatLeft()">Send</button>
             </div>
@@ -30,13 +29,13 @@
             <div class="boxChat" id="showChatRight">
             </div>
             <div id="itemsBoxChat">
-                <button onclick="buttonBold()">Đậm</button>
-                <button onclick="buttonItalic()">Nghiêng</button>
+                <button onclick="buttonBoldRight()" id="propertyBoldRight">Đậm</button>
+                <button onclick="buttonItalicRight()" id="propertyItalicRight">Nghiêng</button>
                 <button onclick="resetRight()">Reset</button>
             </div>
             <div id="inputChat">
-                <div contentEditable class="inputChat" id="inputChatRight" onkeydown="functionEnterRight(event)"
-                    type="text"></div>
+                <div contentEditable class="inputChat" id="inputChatRight" onkeydown="enterRight(event)">
+                </div>
                 <button onclick="sendchatRight()">Send</button>
             </div>
         </div>
