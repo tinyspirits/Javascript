@@ -90,5 +90,5 @@ function sendChatLeft() {
 }
 
 function sendchatRight() {
-    show("inputChatRight", "showChatRight", "showChat", "./avatar/Turtle.jpg");
+    show("inputChatRight", "showChatRight", "showChat", "./avatar/Fish.jpg");
 }
