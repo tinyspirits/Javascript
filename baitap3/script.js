@@ -86,9 +86,9 @@ function show(text, formChat, position, imgSrc) {
 }
 
 function sendChatLeft() {
-    show("inputChatLeft", "showChat", "showChatRight", "/avatar/Tiny.jpg");
+    show("inputChatLeft", "showChat", "showChatRight", "./avatar/Tiny.jpg");
 }
 
 function sendchatRight() {
-    show("inputChatRight", "showChatRight", "showChat", "/avatar/Turtle.jpg");
+    show("inputChatRight", "showChatRight", "showChat", "./avatar/Turtle.jpg");
 }
