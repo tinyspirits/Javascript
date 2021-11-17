@@ -222,6 +222,7 @@ function comfirmPassword() {
 function checkPass() {
     checkPassword("passWord", "alertPassword");
 }
+
 function checkPhone() {
     checkPhoneNumber("inputPhone", "alertPhone");
 }
