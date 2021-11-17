@@ -1,4 +1,5 @@
 const reader = new FileReader();
+const arrayImg = ["jpeg", "jpg", "png", "bmp", "gif"];
 
 // function reset 
 function functionReset() {
@@ -7,8 +8,8 @@ function functionReset() {
 }
 
 // alert refuse
-function refuse(inputName, labelName) {
-    labelName.innerHTML = "&#8861;";
+function refuse(inputName, labelName, content) {
+    labelName.innerHTML = content;
     labelName.style.color = "red";
     inputName.style.border = "1px solid red";
 }
@@ -31,19 +32,19 @@ function convertImg(image) {
 function imageLoad() {
     const titleImg = document.getElementsByClassName("centered")[0];
     const image = convertImg("imageUpload");
-    var formData = new FormData();
     var file = document.getElementById("imgLoad").files[0];
-    formData.append("Filedata", file);
-    var t = file.type.split('/').pop().toLowerCase();
-
-    if (t != "jpeg" && t != "jpg" && t != "png" && t != "bmp" && t != "gif") {
-        alert('Please select a valid image file');
-        document.getElementById("imgLoad").value = '';
-        return false;
-    } else {
-        reader.readAsDataURL(file);
-        titleImg.style.display = "none";
-        return true;
+    var loadImg = file.type.split('/').pop().toLowerCase();
+    for (let i = 0; i < arrayImg.length; i++) {
+        const element = arrayImg[i];
+        if (loadImg != arrayImg[i]) {
+            alert('Please select a valid image file');
+            document.getElementById("imgLoad").value = '';
+            return false;
+        } else {
+            reader.readAsDataURL(file);
+            titleImg.style.display = "none";
+            return true;
+        }
     }
 }
 
@@ -58,7 +59,7 @@ function checkEmail() {
         agree(inputEmail, emailAlert);
         return true;
     } else {
-        refuse(inputEmail, emailAlert);
+        refuse(inputEmail, emailAlert, "Ex:name@domain.com");
         return false;
     }
 }
@@ -80,14 +81,14 @@ function processInputName(idName, idInput) {
         alertName.style.color = "red";
         return false;
     } else {
-        for (let i = 0; i < text.length; i++) {
+        for (let i = 0; i < text.length; i++) { //match trả về từng kí tự kiểm tra từng kí tu
             if (text[i] != /\s/g && text[i] == text[i].match(findNumber) || text[i] == text[i].match(specialCharacter)) {
-                checkValue = "false";
+                checkValue = false;
                 break;
-            } else { checkValue = "true"; }
+            } else { checkValue = true; }
         }
-        if (checkValue == "false") {
-            refuse(inputName, alertName);
+        if (checkValue == false) {
+            refuse(inputName, alertName, "Tên phải là chữ.");
             return false;
         } else {
             agree(inputName, alertName);
@@ -128,7 +129,7 @@ function processInputName(idName, idInput) {
 
 //function check date
 function checkDateOfBirth(dateInput, alertDate) {
-    const regexDate = /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:19\d{2}|20[01][0-9]|2020)$/;
+    const regexDate = /(^(((0[1-9]|1[0-9]|2[0-8])[\/](0[1-9]|1[012]))|((29|30|31)[\/](0[13578]|1[02]))|((29|30)[\/](0[4,6,9]|11)))[\/](?:19\d{2}|20[01][0-9]|2020)$)|(^29[\/]02[\/](19|[2-9][0-9])(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)$)/;
     let inputDate = document.getElementById(dateInput);
     let dateAlert = document.getElementById(alertDate);
     let checkDate = regexDate.test(inputDate.value);
@@ -137,7 +138,7 @@ function checkDateOfBirth(dateInput, alertDate) {
         agree(inputDate, dateAlert);
         return true;
     } else {
-        refuse(inputDate, dateAlert);
+        refuse(inputDate, dateAlert, "nhập dd/mm/yyyy,ex:28/02/2020");
         return false;
     }
 }
@@ -148,7 +149,7 @@ function checkPhoneNumber(phone, alert) {
     let alertPhone = document.getElementById(alert);
 
     if (inputPhone.value[0] != 0 || inputPhone.value.length != 10) {
-        refuse(inputPhone, alertPhone);
+        refuse(inputPhone, alertPhone, "tối thiểu 10 số và bắt đầu là số 0");
         return false;
     } else {
         agree(inputPhone, alertPhone);
@@ -167,7 +168,7 @@ function checkPassword(pass, alert) {
         agree(passWord, alertPassword);
         return true;
     } else {
-        refuse(passWord, alertPassword);
+        refuse(passWord, alertPassword, "tối thiểu 1 hoa, thường, số, kí tự đặc biệt");
         return false;
     }
 }
@@ -185,11 +186,11 @@ function comfirmPass(pass, comfirmPass, alert) {
             agree(comfirm, comfirmAlert);
             return true;
         } else {
-            refuse(comfirm, comfirmAlert);
+            refuse(comfirm, comfirmAlert, "Mật khẩu không khớp.");
             return false;
         }
     } else {
-        refuse(comfirm, comfirmAlert);
+        refuse(comfirm, comfirmAlert, "Mật khẩu không khớp.");
         return false;
     }
 }
@@ -244,10 +245,11 @@ function addData() {
     let check;
     for (let i = 0; i < labelAlert.length; i++) {
         if (labelAlert[i].style.color == "red") {
-            check = "false";
-        } else check = "true";
+            check = false;
+            break;
+        } else check = true;
     }
-    if (check == "true") {
+    if (check == true) {
         data("inputData", "centered", "data", "imageAdd");
     }
 }
