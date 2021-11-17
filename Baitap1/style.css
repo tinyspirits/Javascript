@@ -1,5 +1,4 @@
 body {
-  /* width: 100%; */
   margin: 0;
   padding: 0;
 }
@@ -7,12 +6,22 @@ h3 {
   text-align: center;
 }
 #registerForm {
-  /* display: flex; */
   margin: auto;
   width: 50%;
   flex-wrap: wrap;
 }
-
+.active {
+  color: lightgreen;
+}
+.unactive {
+  color: red;
+}
+.boderActive {
+  border: 1px solid lightgreen;
+}
+.boderUnactive {
+  border: 1px solid red;
+}
 .inputForm {
   display: flex;
 }
@@ -98,4 +107,12 @@ h3 {
 #formInfo > div:last-child > img {
   height: 100%;
   border-radius: 50%;
+}
+@media (max-width: 767px) {
+  .inputForm > span {
+    width: 100%;
+  }
+  #registerForm {
+    width: 100%;
+  }
 }
