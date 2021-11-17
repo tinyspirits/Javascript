@@ -1,5 +1,4 @@
 const reader = new FileReader();
-const arrayImg = ["jpeg", "jpg", "png", "bmp", "gif"];
 
 // function reset 
 function functionReset() {
@@ -30,29 +29,28 @@ function convertImg(image) {
     }, false);
 }
 function imageLoad() {
+    const arrayImg = ["jpeg", "jpg", "png", "bmp", "gif"];
     const titleImg = document.getElementsByClassName("centered")[0];
     const image = convertImg("imageUpload");
     var file = document.getElementById("imgLoad").files[0];
     var loadImg = file.type.split('/').pop().toLowerCase();
-    for (let i = 0; i < arrayImg.length; i++) {
-        const element = arrayImg[i];
-        if (loadImg != arrayImg[i]) {
-            alert('Please select a valid image file');
-            document.getElementById("imgLoad").value = '';
-            return false;
-        } else {
-            reader.readAsDataURL(file);
-            titleImg.style.display = "none";
-            return true;
-        }
+
+    if (arrayImg.includes(loadImg) == false) {
+        alert('Please select a valid image file');
+        document.getElementById("imgLoad").value = '';
+        return false;
+    } else {
+        reader.readAsDataURL(file);
+        titleImg.style.display = "none";
+        return true;
     }
 }
 
 //check email
-function checkEmail() {
+function validateMail(idInput, idEmail) {
     const regexEmail = /^[^<>()[\]\\,;:\%\_\.\*\{\}\[\]\|\/\+\=\?\'#^\s@\"$&!@]+@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z0-9]+\.)+[a-zA-Z]{2,3}))$/;
-    let inputEmail = document.getElementById("inputEmail");
-    let emailAlert = document.getElementById("emailAlert");
+    let inputEmail = document.getElementById(idInput);
+    let emailAlert = document.getElementById(idEmail);
     let checkRegex = regexEmail.test(inputEmail.value);
 
     if (checkRegex) {
@@ -81,7 +79,7 @@ function processInputName(idName, idInput) {
         alertName.style.color = "red";
         return false;
     } else {
-        for (let i = 0; i < text.length; i++) { //match trả về từng kí tự kiểm tra từng kí tu
+        for (let i = 0; i < text.length; i++) { //match trả về từng kí tự kiểm tra từng kí tự
             if (text[i] != /\s/g && text[i] == text[i].match(findNumber) || text[i] == text[i].match(specialCharacter)) {
                 checkValue = false;
                 break;
@@ -110,13 +108,13 @@ function processInputName(idName, idInput) {
             const x = text.match(uppercaseRegex);
             const array = text.split(uppercaseRegex);
             let array2 = "";
-            for (var i = 0; i < text.length; i++) {
+            for (let i = 0; i < text.length; i++) {
                 if (text[i] == text[i].toUpperCase()) {
                     array2 += text[i];
                 }
             }
-            array3 = array2.split("");
-            var newarray = "";
+            var array3 = array2.split("");
+            let newarray = "";
             for (let i = 0; i < array2.length; i++) {
                 newarray = newarray + array[i] + " " + array3[i];
             }
@@ -144,8 +142,8 @@ function checkDateOfBirth(dateInput, alertDate) {
 }
 
 // check phone number 
-function checkPhoneNumber(phone, alert) {
-    let inputPhone = document.getElementById(phone);
+function checkPhoneNumber(idPhone, alert) {
+    let inputPhone = document.getElementById(idPhone);
     let alertPhone = document.getElementById(alert);
 
     if (inputPhone.value[0] != 0 || inputPhone.value.length != 10) {
@@ -213,16 +211,19 @@ function data(dataText, altImg, showData, img) {
         }
     }
 }
+function checkEmail() {
+    validateMail("inputEmail", "emailAlert");
+}
 
 function comfirmPassword() {
     comfirmPass("passWord", "comfirmPass", "comfirmAlert");
 }
 
 function checkPass() {
-    checkPassword("passWord", "alertPassword")
+    checkPassword("passWord", "alertPassword");
 }
 function checkPhone() {
-    checkPhoneNumber("inputPhone", "alertPhone")
+    checkPhoneNumber("inputPhone", "alertPhone");
 }
 
 function checkDate() {
