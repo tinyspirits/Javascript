@@ -162,7 +162,7 @@ function checkPassword(pass, alert) {
     let alertPassword = document.getElementById(alert);
     let testPass = regexPass.test(passWord.value);
 
-    if (testPass) {
+    if (testPass && passWord.value.search(/\W/) != -1) {
         agree(passWord, alertPassword);
         return true;
     } else {

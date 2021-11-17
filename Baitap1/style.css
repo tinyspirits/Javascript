@@ -122,6 +122,7 @@ h3 {
 #formInfo > div:last-child > img {
   height: 100%;
   border-radius: 50%;
+  width: 100%;
 }
 .inputForm > span:last-child {
   position: absolute;
