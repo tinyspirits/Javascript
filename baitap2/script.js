@@ -12,7 +12,6 @@ function selectValue() {
         }
 
         if (select == "odd") {
-
             if ((i - 1) % 2 == 0) {
                 city[i - 1].style.backgroundColor = "yellow";
             }
