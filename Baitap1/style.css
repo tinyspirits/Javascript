@@ -129,9 +129,10 @@ h3 {
   float: right;
   display: block;
   right: 25%;
-  /* height: 16px; */
-  word-wrap: none;
-  word-break: normal;
+  height: 16px;
+  font-weight: bold;
+  width: auto;
+  user-select: none;
 }
 @media (max-width: 767px) {
   .inputForm > span {
