@@ -16,3 +16,13 @@
 #formDropdown > div:last-child > span {
   margin: 5%;
 }
+@media only screen and (max-width: 676px) {
+  #formDropdown {
+    width: 70%;
+  }
+}
+@media only screen and (max-width: 420px) {
+  #formDropdown {
+    width: 100%;
+  }
+}
